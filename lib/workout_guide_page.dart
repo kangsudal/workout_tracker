@@ -12,6 +12,15 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
   final player = AudioPlayer();
 
   @override
+  void initState() {
+    super.initState();
+    player.onPlayerComplete.listen((event) {
+      //complete상태가 되는것을 listen해준다.
+      setState(() {});
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
