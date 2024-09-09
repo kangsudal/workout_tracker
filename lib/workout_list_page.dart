@@ -1,89 +1,121 @@
 import 'package:flutter/material.dart';
-
-class Workout {
-  String name;
-  String image;
-  int minutes;
-
-  Workout({
-    required this.name,
-    required this.image,
-    required this.minutes,
-  });
-}
+import 'package:workout_tracker/workout.dart';
+import 'package:workout_tracker/workout_guide_page.dart';
 
 class WorkoutListPage extends StatelessWidget {
   WorkoutListPage({super.key});
 
-  List<Workout> workouts = [];
-  List<String> workoutName = [
-    '스쿼트',
-    '사이드런지',
-    '푸쉬업',
-    '마운틴클림버',
-    '런지',
-    '덤벨컬',
-    '덩키킥',
-    '친업',
-    '벤치프레스',
+  List<Workout> workouts = [
+    Workout(
+      name: '스쿼트',
+      minutes: 30,
+      imageName: 'squat.jpeg',
+      audioName: 'squat.mp3',
+      kcal: 200,
+    ),
+    Workout(
+      name: '사이드런지',
+      minutes: 20,
+      imageName: 'side_lunge.jpeg',
+      audioName: 'side_lunge.mp3',
+      kcal: 100,
+    ),
+    Workout(
+      name: '푸쉬업',
+      minutes: 15,
+      imageName: 'pushup.jpeg',
+      audioName: 'pushup.mp3',
+      kcal: 100,
+    ),
+    Workout(
+      name: '마운틴클림버',
+      minutes: 15,
+      imageName: 'mountain_climber.jpeg',
+      audioName: 'mountain_climber.mp3',
+      kcal: 50,
+    ),
+    Workout(
+      name: '런지',
+      minutes: 20,
+      imageName: 'lunge.jpeg',
+      audioName: 'lunge.mp3',
+      kcal: 100,
+    ),
+    Workout(
+      name: '덤벨컬',
+      minutes: 40,
+      imageName: 'dumbell_curl.jpeg',
+      audioName: 'dumbell_curl.mp3',
+      kcal: 200,
+    ),
+    Workout(
+      name: '덩키킥',
+      minutes: 30,
+      imageName: 'donkey_kick.jpeg',
+      audioName: 'donkey_kick.mp3',
+      kcal: 50,
+    ),
+    Workout(
+      name: '친업',
+      minutes: 25,
+      imageName: 'chinup.jpeg',
+      audioName: 'chinup.mp3',
+      kcal: 300,
+    ),
+    Workout(
+      name: '벤치프레스',
+      minutes: 10,
+      imageName: 'benchpress.jpeg',
+      audioName: 'benchpress.mp3',
+      kcal: 250,
+    ),
   ];
-  List<String> workoutImage = [
-    'squat.jpeg',
-    'side_lunge.jpeg',
-    'pushup.jpeg',
-    'mountain_climber.jpeg',
-    'lunge.jpeg',
-    'dumbell_curl.jpeg',
-    'donkey_kick.jpeg',
-    'chinup.jpeg',
-    'benchpress.jpeg',
-  ];
-  List<int> workoutMinutes = [
-    30,
-    20,
-    15,
-    15,
-    20,
-    40,
-    30,
-    25,
-    10,
-  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Workout List')), //code줄임 표시
       body: SingleChildScrollView(
         child: Column(
-          children: getWorkoutList(),
+          children: getWorkoutList(context),
         ),
       ),
     );
   }
 
-  List<Row> getWorkoutList() {
-    List<Row> workoutListRow = [];
-    for (var i = 0; i < workoutName.length; i++) {
-      var name = workoutName[i];
-      var image = workoutImage[i];
-      var minutes = workoutMinutes[i];
+  List<GestureDetector> getWorkoutList(BuildContext context) {
+    List<GestureDetector> workoutListRow = [];
+    for (Workout workout in workouts) {
+      String name = workout.name;
+      String image = workout.imageName;
+      int minutes = workout.minutes;
+      int i = workouts.indexOf(workout);
       workoutListRow.add(
-        Row(
-          children: [
-            Container(
-              width: 80,
-              height: 80,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(image: AssetImage('assets/$image')),
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) {
+                return WorkoutGuidePage();
+              },
+            ));
+          },
+          child: Row(
+            children: [
+              Container(
+                width: 80,
+                height: 80,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(image: AssetImage('assets/$image')),
+                ),
               ),
-            ),
-            Expanded(
-              child: Text('${i + 1}.$name', style: TextStyle(fontSize: 20)),
-            ),
-            Text('$minutes 분',
-                style: TextStyle(fontSize: 20, color: Colors.blue))
-          ],
+              Expanded(
+                child: Text('${i + 1}.$name', style: TextStyle(fontSize: 20)),
+              ),
+              Text('$minutes 분',
+                  style: TextStyle(fontSize: 20, color: Colors.blue))
+            ],
+          ),
         ),
       );
     }

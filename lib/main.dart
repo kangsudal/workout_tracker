@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:workout_tracker/landing_page.dart';
 import 'package:workout_tracker/workout_guide_page.dart';
+import 'package:workout_tracker/workout_home_page.dart';
 import 'package:workout_tracker/workout_list_page.dart';
 
 void main() {
@@ -60,7 +61,7 @@ class MyApp extends StatelessWidget {
 // to let the device system mode control the theme mode:
 // themeMode: ThemeMode.system,
 
-      home: WorkoutGuidePage(), //LandingPage(),
+      home: WorkoutHomePage(),//WorkoutListPage(),//WorkoutGuidePage(), //LandingPage(),
     );
   }
 }
