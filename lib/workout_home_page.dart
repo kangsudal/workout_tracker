@@ -16,25 +16,29 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
       body: SafeArea(
           child: Column(
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    Text('Just Do It'),
-                    Text('간단하다. 흔들리면 그것은 지방이다.'),
-                  ],
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Just Do It'),
+                      Text('간단하다. 흔들리면 그것은 지방이다.'),
+                    ],
+                  ),
                 ),
-              ),
-              Container(
-                width: 80,
-                height: 80,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(image: AssetImage('assets/me.jpg')),
+                Container(
+                  width: 80,
+                  height: 80,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(image: AssetImage('assets/me.jpg')),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
           Expanded(
             flex: 6,
