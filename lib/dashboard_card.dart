@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class DashboardCard extends StatelessWidget {
   Icon icon;
   Text title;
-  Text info;
+  Widget info;
   Color? backgroundColor;
   DashboardCard({
     super.key,
