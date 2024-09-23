@@ -25,7 +25,10 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Just Do It',style: TextStyle(fontSize: 30),),
+                      Text(
+                        'Just Do It',
+                        style: TextStyle(fontSize: 30),
+                      ),
                       Text('간단하다. 흔들리면 그것은 지방이다.'),
                     ],
                   ),
@@ -118,46 +121,44 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
           Expanded(
             flex: 4,
             child: Padding(
-              padding: const EdgeInsets.only(right:8.0),
+              padding: const EdgeInsets.only(right: 8.0),
               child: SingleChildScrollView(
                 scrollDirection: Axis.horizontal,
                 child: Row(
                   children: [
                     SizedBox(
-                      child: GestureDetector(
-                        onTap:(){
+                      child: DashboardCard(
+                        customOnTap: () {
                           context.go('/workout_home/workout_list');
                         },
-                        child: DashboardCard(
-                          icon: Icon(
-                            Icons.run_circle_outlined,
-                            size: 33,
+                        icon: Icon(
+                          Icons.run_circle_outlined,
+                          size: 33,
+                          color: Colors.white,
+                        ),
+                        backgroundColor: Colors.orange,
+                        title: Text(
+                          '그룹1',
+                          style: TextStyle(
+                            fontSize: 23,
+                            fontWeight: FontWeight.bold,
                             color: Colors.white,
                           ),
-                          backgroundColor: Colors.orange,
-                          title: Text(
-                            '그룹1',
-                            style: TextStyle(
-                              fontSize: 23,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.white,
-                            ),
-                          ),
-                          info: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  '아침을 여는 5가지 운동 프로그램',
-                                  style: TextStyle(
-                                    fontSize: 23,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white,
-                                  ),
+                        ),
+                        info: Row(
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '아침을 여는 5가지 운동 프로그램',
+                                style: TextStyle(
+                                  fontSize: 23,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white,
                                 ),
                               ),
-                              Image.asset('assets/runner.png'),
-                            ],
-                          ),
+                            ),
+                            Image.asset('assets/runner.png'),
+                          ],
                         ),
                       ),
                       width: 250,
