@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:workout_tracker/my_router.dart';
 
 
 class LandingPage extends StatelessWidget {
@@ -43,7 +45,9 @@ class LandingPage extends StatelessWidget {
                     ),
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      context.go('/workout_home');
+                    },
                     child: Text(
                       'Start',
                       style: TextStyle(fontSize: 35),

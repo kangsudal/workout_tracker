@@ -6,6 +6,8 @@ import 'package:workout_tracker/workout_guide_page.dart';
 import 'package:workout_tracker/workout_home_page.dart';
 import 'package:workout_tracker/workout_list_page.dart';
 
+import 'my_router.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -16,12 +18,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MaterialApp.router(
+      routerConfig: myRouter,//라우터를 전달해주면, 내가 만든 구조를 가져온다.
       title: 'Flutter Demo',
-      // Theme config for FlexColorScheme version 7.3.x. Make sure you use
-// same or higher package version, but still same major version. If you
-// use a lower package version, some properties may not be supported.
-// In that case remove them after copying this theme to your app.
       theme: FlexThemeData.light(
         scheme: FlexScheme.mandyRed,
         surfaceMode: FlexSurfaceMode.levelSurfacesLowScaffold,
@@ -60,8 +59,6 @@ class MyApp extends StatelessWidget {
 // If you do not have a themeMode switch, uncomment this line
 // to let the device system mode control the theme mode:
 // themeMode: ThemeMode.system,
-
-      home: WorkoutHomePage(),//WorkoutListPage(),//WorkoutGuidePage(), //LandingPage(),
     );
   }
 }

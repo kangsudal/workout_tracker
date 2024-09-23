@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'dashboard_card.dart';
 
@@ -123,35 +124,40 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                 child: Row(
                   children: [
                     SizedBox(
-                      child: DashboardCard(
-                        icon: Icon(
-                          Icons.run_circle_outlined,
-                          size: 33,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.orange,
-                        title: Text(
-                          '그룹1',
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
+                      child: GestureDetector(
+                        onTap:(){
+                          context.go('/workout_home/workout_list');
+                        },
+                        child: DashboardCard(
+                          icon: Icon(
+                            Icons.run_circle_outlined,
+                            size: 33,
                             color: Colors.white,
                           ),
-                        ),
-                        info: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                '아침을 여는 5가지 운동 프로그램',
-                                style: TextStyle(
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                          backgroundColor: Colors.orange,
+                          title: Text(
+                            '그룹1',
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          info: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  '아침을 여는 5가지 운동 프로그램',
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Image.asset('assets/runner.png'),
-                          ],
+                              Image.asset('assets/runner.png'),
+                            ],
+                          ),
                         ),
                       ),
                       width: 250,
