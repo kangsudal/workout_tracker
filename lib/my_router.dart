@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workout_tracker/landing_page.dart';
+import 'package:workout_tracker/workout_guide_page.dart';
 import 'package:workout_tracker/workout_home_page.dart';
 import 'package:workout_tracker/workout_list_page.dart';
 
@@ -19,6 +20,14 @@ final GoRouter myRouter = GoRouter(
           builder: (context, state) {
             return WorkoutListPage();
           },
+          routes: [
+            GoRoute(
+              path: "workout_guide",
+              builder: (context, state) {
+                return WorkoutGuidePage();
+              },
+            ),
+          ],
         ),
       ],
     ),

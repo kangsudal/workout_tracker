@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:workout_tracker/landing_page.dart';
 import 'package:workout_tracker/workout.dart';
 import 'package:workout_tracker/workout_guide_page.dart';
 
@@ -93,11 +95,7 @@ class WorkoutListPage extends StatelessWidget {
       workoutListRow.add(
         GestureDetector(
           onTap: () {
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) {
-                return WorkoutGuidePage();
-              },
-            ));
+            context.go('/workout_home/workout_list/workout_guide');
           },
           child: Row(
             children: [
