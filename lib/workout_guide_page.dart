@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:workout_tracker/workout.dart';
 
 class WorkoutGuidePage extends StatefulWidget {
-  WorkoutGuidePage({super.key});
+  int workoutsIndex;
+  WorkoutGuidePage({super.key, required this.workoutsIndex});
 
   @override
   State<WorkoutGuidePage> createState() => _WorkoutGuidePageState();
@@ -77,11 +78,12 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
   ];
   final player = AudioPlayer();
   late Workout currentWorkout;
-  int currentIndex = 0;
+  late int currentIndex;
 
   @override
   void initState() {
     super.initState();
+    currentIndex = widget.workoutsIndex;
     currentWorkout = workouts[currentIndex];
     player.onPlayerComplete.listen((event) {
       //complete상태가 되는것을 listen해준다.
