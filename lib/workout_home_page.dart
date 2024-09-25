@@ -130,7 +130,7 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                     SizedBox(
                       child: DashboardCard(
                         customOnTap: () {
-                          context.go('/workout_home/workout_list');
+                          context.go('/workout_home/workout_list/0');
                         },
                         icon: Icon(
                           Icons.run_circle_outlined,
@@ -167,6 +167,9 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                     ),
                     SizedBox(
                       child: DashboardCard(
+                        customOnTap: () {
+                          context.go('/workout_home/workout_list/1');
+                        },
                         icon: Icon(
                           Icons.rowing_outlined,
                           size: 33,
