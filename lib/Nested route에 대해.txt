@@ -1,0 +1,20 @@
+ Nested route 구성
+nested route를 구성할때 go_router에서 선택할 수 있는 방법은 다음과 같습니다.
+
+ShellRoute : 상태유지가 안됩니다. 탭이 전환될 때마다 widget tree가 rebuild 됩니다.
+StatefulShellRoute : 상태유지가 됩니다. indexedStack constructor와 함께 자주 사용됩니다.
+BottomNavigationBar에는 StatefulShellRoute가 더 적합합니다. 탭을 움직일때 상태가 보전되어야 자연스러우니까요. 우리는 StatefulShellRoute의 indexedStack constructor를 이용하겠습니다.
+
+ route tree design
+우리가 만들 목표 route tree는 다음과 같습니다.
+하나의 StatefulShellRoute내에 StatefulShellBranch가 두 개 있습니다. 그리고 실제 Page는 StatefulShellBranch내에 위치하는 구성입니다.
+
+└── GoRouter
+    └── StatefulShellRoute
+        ├── StatefulShellBranch # home tab, index:0
+        │   └── GoRoute # WorkoutHomePage
+        │       └── GoRoute # WorkoutListPage
+        │           └── GoRoute # WorkoutGuidePage
+        └── StatefulShellBranch # settings tab, index:1
+            └── GoRoute # SettingsPage
+                └── GoRoute # LoginPage

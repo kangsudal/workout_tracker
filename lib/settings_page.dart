@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({super.key});
@@ -15,7 +16,9 @@ class SettingsPage extends StatelessWidget {
           children: [
             Text('Setting Menu',style: Theme.of(context).textTheme.bodyLarge,),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                context.go('/settings/login');
+              },
               child: Text('go to LoginPage'),
             ),
           ],
