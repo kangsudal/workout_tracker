@@ -16,9 +16,11 @@ final GoRouter myRouter = GoRouter(
       builder: (context, state) => const WorkoutHomePage(),
       routes: <RouteBase>[
         GoRoute(
-          path: 'workout_list',
+          path: 'workout_list/:group_index',
           builder: (context, state) {
-            return WorkoutListPage();
+            String? groupIndexString = state.pathParameters['group_index'];
+            final groupIndex = int.parse(groupIndexString!);
+            return WorkoutListPage(groupIndex: groupIndex);
           },
           routes: [
             GoRoute(
@@ -27,11 +29,18 @@ final GoRouter myRouter = GoRouter(
                 String? workoutsIndexString =
                     state.pathParameters['workouts_index'];
                 //url에 붙어있는 parameter중에 workout_index인 값
+
+                String? groupIndexString = state.pathParameters['group_index'];
+                final groupIndex = int.parse(groupIndexString!);
+
                 int workoutsIndex;
                 if (workoutsIndexString != null) {
                   workoutsIndex = int.parse(workoutsIndexString);
                   print(workoutsIndex);
-                  return WorkoutGuidePage(workoutsIndex: workoutsIndex);
+                  return WorkoutGuidePage(
+                    workoutsIndex: workoutsIndex,
+                    groupIndex: groupIndex,
+                  );
                 } else {
                   return Scaffold(
                     appBar: AppBar(),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workout_tracker/workout_manager.dart';
 
 import 'dashboard_card.dart';
 
@@ -149,7 +150,8 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                           children: [
                             Expanded(
                               child: Text(
-                                '아침을 여는 5가지 운동 프로그램',
+                                WorkoutManager
+                                    .workoutGroups[0].groupDescription,
                                 style: TextStyle(
                                   fontSize: 23,
                                   fontWeight: FontWeight.bold,
@@ -180,7 +182,7 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                           ),
                         ),
                         info: Text(
-                          '근력을 키우는 7가지 프로그램',
+                          WorkoutManager.workoutGroups[1].groupDescription,
                           style: TextStyle(
                             fontSize: 23,
                             fontWeight: FontWeight.bold,
@@ -198,6 +200,11 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
           Expanded(
             flex: 3,
             child: DashboardCard(
+              customOnTap: () {
+                if (WorkoutManager.currentWorkoutGroupIndex == null) return;
+                context.go(
+                    '/workout_home/workout_list/${WorkoutManager.currentWorkoutGroupIndex}');
+              },
               icon: Icon(
                 Icons.list,
                 size: 33,
