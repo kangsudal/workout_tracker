@@ -33,6 +33,8 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
       //complete상태가 되는것을 listen해준다.
       setState(() {});
     });
+    WorkoutManager.increaseTodayWorkoutMinutes(currentWorkout.minutes);
+    WorkoutManager.increaseTodayWorkoutCalories(currentWorkout.kcal);
   }
 
   @override

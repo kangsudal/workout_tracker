@@ -13,17 +13,23 @@ class WorkoutHomePage extends StatefulWidget {
 
 class _WorkoutHomePageState extends State<WorkoutHomePage> {
   late Future<int> monthlyCountFuture;
+  late Future<int> workoutMinutesFuture;
+  late Future<int> workoutKcalFuture;
 
   @override
   void initState() {
     super.initState();
     monthlyCountFuture = WorkoutManager.getMonthlyWorkoutCount();
+    workoutMinutesFuture = WorkoutManager.getTodayWorkoutMinutes();
+    workoutKcalFuture = WorkoutManager.getTodayWorkoutCalories();
   }
 
   @override
   void didUpdateWidget(covariant WorkoutHomePage oldWidget) {
     super.didUpdateWidget(oldWidget);
-    monthlyCountFuture=WorkoutManager.getMonthlyWorkoutCount();
+    monthlyCountFuture = WorkoutManager.getMonthlyWorkoutCount();
+    workoutMinutesFuture = WorkoutManager.getTodayWorkoutMinutes();
+    workoutKcalFuture = WorkoutManager.getTodayWorkoutCalories();
   }
 
   @override
@@ -82,13 +88,12 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                     info: FutureBuilder<int>(
                       builder: (context, snapshot) {
                         //snapshot: value값+상태를 같이 갖고있다.
-                        if(snapshot.connectionState == ConnectionState.waiting){
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
                           return CircularProgressIndicator();
-                        }
-                        else if(snapshot.hasError){
+                        } else if (snapshot.hasError) {
                           return Text('Error: ${snapshot.error}');
-                        }
-                        else if(snapshot.hasData){
+                        } else if (snapshot.hasData) {
                           //snapshot.requireData : null체크를 안해줘도 된다. = hasData와 함께쓰인다.
                           final monthlyWorkoutCount = snapshot.requireData ?? 0;
                           return Text(
@@ -96,14 +101,13 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                             style: TextStyle(
                                 fontSize: 33, fontWeight: FontWeight.bold),
                           );
-                        }else{
+                        } else {
                           return Text(
                             '0회',
                             style: TextStyle(
                                 fontSize: 33, fontWeight: FontWeight.bold),
                           );
                         }
-
                       },
                       future: monthlyCountFuture,
                     ),
@@ -124,10 +128,24 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                             style: TextStyle(
                                 fontSize: 20, fontWeight: FontWeight.bold),
                           ),
-                          info: Text(
-                            '10분',
-                            style: TextStyle(
-                                fontSize: 33, fontWeight: FontWeight.bold),
+                          info: FutureBuilder<int>(
+                            future: workoutMinutesFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else {
+                                final workoutMinutes = snapshot.data ?? 0;
+                                return Text(
+                                  '$workoutMinutes분',
+                                  style: TextStyle(
+                                      fontSize: 33,
+                                      fontWeight: FontWeight.bold),
+                                );
+                              }
+                            },
                           ),
                         ),
                       ),
@@ -143,10 +161,24 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                             style: TextStyle(
                                 fontSize: 23, fontWeight: FontWeight.bold),
                           ),
-                          info: Text(
-                            '100Kcal',
-                            style: TextStyle(
-                                fontSize: 33, fontWeight: FontWeight.bold),
+                          info: FutureBuilder<int>(
+                            future: workoutKcalFuture,
+                            builder: (context, snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return CircularProgressIndicator();
+                              } else if (snapshot.hasError) {
+                                return Text('Error: ${snapshot.error}');
+                              } else {
+                                final workoutKcal = snapshot.data ?? 0;
+                                return Text(
+                                  '${workoutKcal}Kcal',
+                                  style: TextStyle(
+                                      fontSize: 33,
+                                      fontWeight: FontWeight.bold),
+                                );
+                              }
+                            },
                           ),
                         ),
                       ),
