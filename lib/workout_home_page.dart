@@ -12,6 +12,20 @@ class WorkoutHomePage extends StatefulWidget {
 }
 
 class _WorkoutHomePageState extends State<WorkoutHomePage> {
+  late Future<int> monthlyCountFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    monthlyCountFuture = WorkoutManager.getMonthlyWorkoutCount();
+  }
+
+  @override
+  void didUpdateWidget(covariant WorkoutHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    monthlyCountFuture=WorkoutManager.getMonthlyWorkoutCount();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,10 +79,33 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                       style:
                           TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
                     ),
-                    info: Text(
-                      '12회',
-                      style:
-                          TextStyle(fontSize: 33, fontWeight: FontWeight.bold),
+                    info: FutureBuilder<int>(
+                      builder: (context, snapshot) {
+                        //snapshot: value값+상태를 같이 갖고있다.
+                        if(snapshot.connectionState == ConnectionState.waiting){
+                          return CircularProgressIndicator();
+                        }
+                        else if(snapshot.hasError){
+                          return Text('Error: ${snapshot.error}');
+                        }
+                        else if(snapshot.hasData){
+                          //snapshot.requireData : null체크를 안해줘도 된다. = hasData와 함께쓰인다.
+                          final monthlyWorkoutCount = snapshot.requireData ?? 0;
+                          return Text(
+                            '$monthlyWorkoutCount회',
+                            style: TextStyle(
+                                fontSize: 33, fontWeight: FontWeight.bold),
+                          );
+                        }else{
+                          return Text(
+                            '0회',
+                            style: TextStyle(
+                                fontSize: 33, fontWeight: FontWeight.bold),
+                          );
+                        }
+
+                      },
+                      future: monthlyCountFuture,
                     ),
                   ),
                 ),
