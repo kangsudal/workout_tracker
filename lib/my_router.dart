@@ -22,7 +22,7 @@ final GoRouter myRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: "/",
-      builder: (context, state) => AnimationPracticeWidget(),//const LandingPage(),
+      builder: (context, state) => const LandingPage(),//AnimationPracticeWidget(),//
     ),
     StatefulShellRoute.indexedStack(
       parentNavigatorKey: _rootNavigatorKey, //상위 router를 명시

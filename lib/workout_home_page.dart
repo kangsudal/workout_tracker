@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workout_tracker/animated_icon_widget.dart';
 import 'package:workout_tracker/workout_manager.dart';
 
 import 'dashboard_card.dart';
@@ -75,8 +76,8 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
               children: [
                 Expanded(
                   child: DashboardCard(
-                    icon: Icon(
-                      Icons.fitness_center,
+                    icon: AnimatedIconWidget(
+                      icon: Icons.fitness_center,
                       size: 33,
                       color: Colors.orange,
                     ),
