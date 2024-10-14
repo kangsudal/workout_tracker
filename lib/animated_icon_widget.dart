@@ -49,15 +49,24 @@ class _AnimatedIconWidgetState extends State<AnimatedIconWidget>
 
     _animation.addListener(() {
       //animation 값이 바뀔때마다 화면 반영
+
+      //TweenSequence = 1 RANGE
       if (_animation.status == AnimationStatus.completed) {
         _controller.reverse();
       } else if (_animation.status == AnimationStatus.dismissed) {
+        //끝에서부터 앞으로 와서 도달했을때를 감지. 그래서 앞에 reverse 부분을 지워서 없애면, 이것도 수행될 일이 없다.
         _controller.forward();
       }
       //setState를 할 필요없도록 AnimatedBuilder를 넣는다. AnimatedBuilder 내부만 다시그림
     });
 
     _controller.forward();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
