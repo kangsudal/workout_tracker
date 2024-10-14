@@ -54,7 +54,7 @@ class _AnimatedIconWidgetState extends State<AnimatedIconWidget>
       } else if (_animation.status == AnimationStatus.dismissed) {
         _controller.forward();
       }
-      setState(() {});
+      //setState를 할 필요없도록 AnimatedBuilder를 넣는다. AnimatedBuilder 내부만 다시그림
     });
 
     _controller.forward();
@@ -62,13 +62,18 @@ class _AnimatedIconWidgetState extends State<AnimatedIconWidget>
 
   @override
   Widget build(BuildContext context) {
-    return Transform.rotate(
-      angle: _animation.value * 0.0174533, //double값을 radian 값으로 바꿔주는 수식
-      child: Icon(
-        widget.icon,
-        size: widget.size,
-        color: widget.color,
-      ),
+    return AnimatedBuilder(
+      builder: (context, child) {
+        return Transform.rotate(
+          angle: _animation.value * 0.0174533, //double값을 radian 값으로 바꿔주는 수식
+          child: Icon(
+            widget.icon,
+            size: widget.size,
+            color: widget.color,
+          ),
+        );
+      },
+      animation: _controller,
     );
   }
 }
