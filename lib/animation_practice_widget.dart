@@ -18,12 +18,20 @@ class _AnimationPracticeWidgetState extends State<AnimationPracticeWidget> with 
       duration: const Duration(seconds: 2),
       vsync: this,
     );
-    _animation = Tween<double>(begin: 50.0, end: 200.0).animate(_controller);
-    _animation.addListener((){
+    final Animation<double> _curvedAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Curves.elasticInOut,
+    );
+
+    _animation = Tween<double>(begin: 50.0, end: 200.0).animate(_curvedAnimation);
+    _animation.addListener(() {
       setState(() {
 
       });
     });
+    // _controller.addListener((){
+    //   setState(() {});
+    // });위와 같다. _aniatmion과 _controller를 연결시켜놨기때문
     _controller.forward();
   }
 
