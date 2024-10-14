@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workout_tracker/animation_practice_widget.dart';
 import 'package:workout_tracker/frame_page.dart';
 import 'package:workout_tracker/landing_page.dart';
 import 'package:workout_tracker/login_page.dart';
@@ -21,7 +22,7 @@ final GoRouter myRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: "/",
-      builder: (context, state) => const LandingPage(),
+      builder: (context, state) => AnimationPracticeWidget(),//const LandingPage(),
     ),
     StatefulShellRoute.indexedStack(
       parentNavigatorKey: _rootNavigatorKey, //상위 router를 명시
