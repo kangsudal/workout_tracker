@@ -89,9 +89,11 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
     );
   }
 
-  IconButton getIconButton() {
+  Widget getIconButton() {
+    Widget? switcherIcon;
     if (player.state == PlayerState.playing) {
-      return IconButton(
+      switcherIcon = IconButton(
+        key: ValueKey(1),
         onPressed: () async {
           await player.stop();
           setState(() {});
@@ -101,7 +103,8 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
         color: Colors.deepOrange,
       );
     } else {
-      return IconButton(
+      switcherIcon = IconButton(
+        key: ValueKey(2),
         onPressed: () async {
           await player.play(AssetSource('squat.mp3'));
           setState(() {});
@@ -111,6 +114,10 @@ class _WorkoutGuidePageState extends State<WorkoutGuidePage> {
         color: Colors.deepOrange,
       );
     }
+    return AnimatedSwitcher(
+      duration: Duration(seconds: 2),
+      child: switcherIcon,
+    );
   }
 
   void prevWorkout() {
