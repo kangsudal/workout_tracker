@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:workout_tracker/dashboard_card.dart';
 import 'package:workout_tracker/landing_page.dart';
 import 'package:workout_tracker/workout.dart';
 import 'package:workout_tracker/workout_guide_page.dart';
@@ -19,7 +20,7 @@ class WorkoutListPage extends StatelessWidget {
       appBar: AppBar(title: Text('Workout List')), //code줄임 표시
       body: SingleChildScrollView(
         child: Column(
-          children: getWorkoutList(context),
+          children: [getHero(context), ...getWorkoutList(context)],
         ),
       ),
     );
@@ -36,7 +37,8 @@ class WorkoutListPage extends StatelessWidget {
       workoutListRow.add(
         GestureDetector(
           onTap: () {
-            context.go('/workout_home/workout_list/$groupIndex/workout_guide/$i');
+            context
+                .go('/workout_home/workout_list/$groupIndex/workout_guide/$i');
           },
           child: Row(
             children: [
@@ -59,5 +61,89 @@ class WorkoutListPage extends StatelessWidget {
       );
     }
     return workoutListRow;
+  }
+
+  Widget getHero(BuildContext context) {
+    if (groupIndex == 0) {
+      return Hero(
+        tag: 'group_0',
+        child: SizedBox(
+          height: 150,
+          child: DashboardCard(
+            icon: Icon(
+              Icons.run_circle_outlined,
+              size: 33,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.orange,
+            title: Text(
+              '그룹1',
+              style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            info: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          WorkoutManager.workoutGroups[groupIndex].groupDescription,
+                          style: TextStyle(fontSize: 23, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(child: Image.asset('assets/sample1.png')),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else if (groupIndex == 1) {
+      return Hero(
+        tag: 'group_1',
+        child: SizedBox(
+          height: 150,
+          child: DashboardCard(
+            icon: Icon(
+              Icons.rowing_outlined,
+              size: 33,
+              color: Colors.white,
+            ),
+            backgroundColor: Colors.teal,
+            title: Text(
+              '그룹2',
+              style: TextStyle(
+                  fontSize: 23,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
+            info: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          WorkoutManager.workoutGroups[groupIndex].groupDescription,
+                          style: TextStyle(fontSize: 23, color: Colors.white),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(child: Image.asset('assets/sample2.png')),
+              ],
+            ),
+          ),
+        ),
+      );
+    } else {
+      return SizedBox();
+    }
   }
 }

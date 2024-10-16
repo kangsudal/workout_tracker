@@ -198,68 +198,74 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
                 child: Row(
                   children: [
                     SizedBox(
-                      child: DashboardCard(
-                        customOnTap: () {
-                          context.go('/workout_home/workout_list/0');
-                        },
-                        icon: Icon(
-                          Icons.run_circle_outlined,
-                          size: 33,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.orange,
-                        title: Text(
-                          '그룹1',
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
+                      child: Hero(
+                        tag:'group_0',
+                        child: DashboardCard(
+                          customOnTap: () {
+                            context.go('/workout_home/workout_list/0');
+                          },
+                          icon: Icon(
+                            Icons.run_circle_outlined,
+                            size: 33,
                             color: Colors.white,
                           ),
-                        ),
-                        info: Row(
-                          children: [
-                            Expanded(
-                              child: Text(
-                                WorkoutManager
-                                    .workoutGroups[0].groupDescription,
-                                style: TextStyle(
-                                  fontSize: 23,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.white,
+                          backgroundColor: Colors.orange,
+                          title: Text(
+                            '그룹1',
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          info: Row(
+                            children: [
+                              Expanded(
+                                child: Text(
+                                  WorkoutManager
+                                      .workoutGroups[0].groupDescription,
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.white,
+                                  ),
                                 ),
                               ),
-                            ),
-                            Image.asset('assets/runner.png'),
-                          ],
+                              Image.asset('assets/runner.png'),
+                            ],
+                          ),
                         ),
                       ),
                       width: 250,
                     ),
                     SizedBox(
-                      child: DashboardCard(
-                        customOnTap: () {
-                          context.go('/workout_home/workout_list/1');
-                        },
-                        icon: Icon(
-                          Icons.rowing_outlined,
-                          size: 33,
-                          color: Colors.white,
-                        ),
-                        backgroundColor: Colors.teal,
-                        title: Text(
-                          '그룹2',
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
+                      child: Hero(
+                        tag: 'group_1',
+                        child: DashboardCard(
+                          customOnTap: () {
+                            context.go('/workout_home/workout_list/1');
+                          },
+                          icon: Icon(
+                            Icons.rowing_outlined,
+                            size: 33,
                             color: Colors.white,
                           ),
-                        ),
-                        info: Text(
-                          WorkoutManager.workoutGroups[1].groupDescription,
-                          style: TextStyle(
-                            fontSize: 23,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
+                          backgroundColor: Colors.teal,
+                          title: Text(
+                            '그룹2',
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          info: Text(
+                            WorkoutManager.workoutGroups[1].groupDescription,
+                            style: TextStyle(
+                              fontSize: 23,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
