@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:workout_tracker/animated_icon_widget.dart';
+import 'package:workout_tracker/widgets/animated_icon_widget.dart';
+import 'package:workout_tracker/widgets/animated_text_carousel.dart';
 import 'package:workout_tracker/workout_manager.dart';
 
 import 'dashboard_card.dart';
@@ -44,16 +45,7 @@ class _WorkoutHomePageState extends State<WorkoutHomePage> {
             child: Row(
               children: [
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Just Do It',
-                        style: TextStyle(fontSize: 30),
-                      ),
-                      Text('간단하다. 흔들리면 그것은 지방이다.'),
-                    ],
-                  ),
+                  child: AnimatedTextCarousel(),
                 ),
                 Container(
                   width: 80,
