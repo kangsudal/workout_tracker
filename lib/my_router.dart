@@ -9,6 +9,8 @@ import 'package:workout_tracker/workout_guide_page.dart';
 import 'package:workout_tracker/workout_home_page.dart';
 import 'package:workout_tracker/workout_list_page.dart';
 
+import 'registration_page.dart';
+
 //Nested route에는 key가 반드시 필요합니다. Key는 고유의 navigator를 갖는 애들에게 모두 부여합니다.
 final GlobalKey<NavigatorState> _rootNavigatorKey =
     GlobalKey<NavigatorState>(debugLabel: 'root');
@@ -98,6 +100,14 @@ final GoRouter myRouter = GoRouter(
                   builder: (context, state) {
                     return LoginPage();
                   },
+                  routes: [
+                    GoRoute(
+                      path: 'registration',
+                      builder: (context, state) {
+                        return RegistrationPage();
+                      },
+                    )
+                  ],
                 ),
               ],
             ),

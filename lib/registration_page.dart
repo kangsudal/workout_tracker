@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
-import 'package:workout_tracker/frame_page.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({super.key});
+class RegistrationPage extends StatelessWidget {
+  RegistrationPage({super.key});
 
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _passwordController = TextEditingController();
 
+  String? name;
   String? email;
   String? password;
 
@@ -23,8 +23,25 @@ class LoginPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Text(
-                'Login',
+                '회원가입',
                 style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: '이름',
+                  labelStyle:  Theme.of(context).textTheme.headlineSmall,
+                  border: UnderlineInputBorder(),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '이름을 입력하세요';
+                  }
+                  return null;
+                },
+                onSaved: (value) {
+                  name = value;
+                },
               ),
               TextFormField(
                 decoration: InputDecoration(
@@ -53,6 +70,7 @@ class LoginPage extends StatelessWidget {
                 },
               ),
               TextFormField(
+                controller: _passwordController,
                 //중요:command+k 키보드나오게
                 decoration: InputDecoration(
                   labelText: 'Password',
@@ -73,15 +91,30 @@ class LoginPage extends StatelessWidget {
                   password = value;
                 },
               ),
+              TextFormField(
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: '비밀번호확인',
+                  labelStyle:  Theme.of(context).textTheme.headlineSmall,
+                  hintText: '비밀번호를 한번더 입력하세요',
+                  border: UnderlineInputBorder(),
+                  floatingLabelBehavior: FloatingLabelBehavior.always,
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return '비밀번호를 다시한번 입력하세요';
+                  } else if (value != _passwordController.text) {
+                    return '비밀번호가 일치하지 않습니다.';
+                  }
+                  return null;
+                },
+              ),
               ElevatedButton(
                 onPressed: () {
-                  _formKey.currentState?.validate(); // formKey의 모든 vlaidator 함수들을 실행시킨다.
+                  _formKey.currentState
+                      ?.validate(); // formKey의 모든 vlaidator 함수들을 실행시킨다.
                 },
-                child: Text('로그인'),
-              ),
-              OutlinedButton(
-                onPressed: () {context.go('/settings/login/registration');},
-                child: Text('go to Register page'),
+                child: Text('회원가입'),
               ),
             ],
           ),
