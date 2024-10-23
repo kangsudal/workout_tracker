@@ -72,7 +72,9 @@ class LoginPage extends StatelessWidget {
                 },
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  _formKey.currentState?.validate(); // formKey의 모든 vlaidator 함수들을 실행시킨다.
+                },
                 child: Text('로그인'),
               ),
               OutlinedButton(
