@@ -29,7 +29,7 @@ class RegistrationPage extends StatelessWidget {
               TextFormField(
                 decoration: InputDecoration(
                   labelText: '이름',
-                  labelStyle:  Theme.of(context).textTheme.headlineSmall,
+                  labelStyle: Theme.of(context).textTheme.headlineSmall,
                   border: UnderlineInputBorder(),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
                 ),
@@ -95,7 +95,7 @@ class RegistrationPage extends StatelessWidget {
                 obscureText: true,
                 decoration: InputDecoration(
                   labelText: '비밀번호확인',
-                  labelStyle:  Theme.of(context).textTheme.headlineSmall,
+                  labelStyle: Theme.of(context).textTheme.headlineSmall,
                   hintText: '비밀번호를 한번더 입력하세요',
                   border: UnderlineInputBorder(),
                   floatingLabelBehavior: FloatingLabelBehavior.always,
@@ -111,8 +111,13 @@ class RegistrationPage extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  _formKey.currentState
-                      ?.validate(); // formKey의 모든 vlaidator 함수들을 실행시킨다.
+                  final result = _formKey.currentState!
+                      .validate(); // formKey의 모든 vlaidator 함수들을 실행시킨다.
+                  if (result) {
+                    //저장 action 수행
+                    _formKey.currentState!
+                        .save(); //멤버변수 = textController.text 랑 같은데 Form 쓸정도로 필드가 많으면 .save가 더 낫다.
+                  }
                 },
                 child: Text('회원가입'),
               ),
