@@ -1,10 +1,10 @@
 import 'package:flex_color_scheme/flex_color_scheme.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:workout_tracker/landing_page.dart';
-import 'package:workout_tracker/workout_guide_page.dart';
-import 'package:workout_tracker/workout_home_page.dart';
-import 'package:workout_tracker/workout_list_page.dart';
+import 'package:workout_tracker/pages/landing_page.dart';
+import 'package:workout_tracker/pages/workout_guide_page.dart';
+import 'package:workout_tracker/pages/workout_home_page.dart';
+import 'package:workout_tracker/pages/my_workout_list_page.dart';
 
 import 'my_router.dart';
 

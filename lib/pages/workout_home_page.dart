@@ -4,7 +4,7 @@ import 'package:workout_tracker/widgets/animated_icon_widget.dart';
 import 'package:workout_tracker/widgets/animated_text_carousel.dart';
 import 'package:workout_tracker/workout_manager.dart';
 
-import 'dashboard_card.dart';
+import '../dashboard_card.dart';
 
 class WorkoutHomePage extends StatefulWidget {
   const WorkoutHomePage({super.key});

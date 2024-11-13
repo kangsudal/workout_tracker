@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workout_tracker/dashboard_card.dart';
-import 'package:workout_tracker/landing_page.dart';
+import 'package:workout_tracker/pages/landing_page.dart';
 import 'package:workout_tracker/workout.dart';
-import 'package:workout_tracker/workout_guide_page.dart';
+import 'package:workout_tracker/pages/workout_guide_page.dart';
 import 'package:workout_tracker/workout_manager.dart';
 
-class WorkoutListPage extends StatelessWidget {
+class MyWorkoutListPage extends StatelessWidget {
   final int groupIndex;
 
-  WorkoutListPage({super.key, required this.groupIndex}) {
+  MyWorkoutListPage({super.key, required this.groupIndex}) {
     WorkoutManager.currentWorkoutGroupIndex = groupIndex;
     WorkoutManager.increaseMonthlyWorkoutCount();
   }

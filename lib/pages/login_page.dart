@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:workout_tracker/frame_page.dart';
+import 'package:workout_tracker/pages/frame_page.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:workout_tracker/animation_practice_widget.dart';
-import 'package:workout_tracker/frame_page.dart';
-import 'package:workout_tracker/landing_page.dart';
-import 'package:workout_tracker/login_page.dart';
-import 'package:workout_tracker/settings_page.dart';
-import 'package:workout_tracker/workout_guide_page.dart';
-import 'package:workout_tracker/workout_home_page.dart';
-import 'package:workout_tracker/workout_list_page.dart';
+import 'package:workout_tracker/pages/frame_page.dart';
+import 'package:workout_tracker/pages/landing_page.dart';
+import 'package:workout_tracker/pages/login_page.dart';
+import 'package:workout_tracker/pages/settings_page.dart';
+import 'package:workout_tracker/pages/workout_guide_page.dart';
+import 'package:workout_tracker/pages/workout_home_page.dart';
+import 'package:workout_tracker/pages/my_workout_list_page.dart';
 
-import 'registration_page.dart';
+import 'pages/registration_page.dart';
 
 //Nested route에는 key가 반드시 필요합니다. Key는 고유의 navigator를 갖는 애들에게 모두 부여합니다.
 final GlobalKey<NavigatorState> _rootNavigatorKey =
@@ -48,7 +48,7 @@ final GoRouter myRouter = GoRouter(
                     String? groupIndexString =
                         state.pathParameters['group_index'];
                     final groupIndex = int.parse(groupIndexString!);
-                    return WorkoutListPage(groupIndex: groupIndex);
+                    return MyWorkoutListPage(groupIndex: groupIndex);
                   },
                   routes: [
                     GoRoute(
